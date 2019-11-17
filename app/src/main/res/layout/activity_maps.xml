@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etOrigin"
-        android:hint="Enter origin address" />
+        android:hint="Ingresa dirección de inicio" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter destination address"
+        android:hint="Ingresa dirección final"
         android:id="@+id/etDestination" />
 
     <LinearLayout
@@ -27,8 +27,24 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Find path"
+            android:text="Encontrar ruta"
             android:id="@+id/btnFindPath" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiempo de llegada:"
+            android:textColor="#000"
+            android:textSize="10dp" />
+        <TextView
+            android:id="@+id/distancia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distancia:"
+            android:textColor="#000"
+            android:textSize="10dp"
+            android:layout_marginLeft="30dp"/>
     </LinearLayout>
 
 

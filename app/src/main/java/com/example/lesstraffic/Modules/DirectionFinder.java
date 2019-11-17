@@ -3,6 +3,7 @@ package com.example.lesstraffic.Modules;
 import android.os.AsyncTask;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.example.lesstraffic.LaLo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +29,8 @@ public class DirectionFinder {
     private DirectionFinderListener listener;
     private String origin;
     private String destination;
+    private int duracionC;
+
 
     public DirectionFinder(DirectionFinderListener listener, String origin, String destination) {
         this.listener = listener;
@@ -101,6 +104,20 @@ public class DirectionFinder {
             JSONObject jsonDuration = jsonLeg.getJSONObject("duration");
             JSONObject jsonEndLocation = jsonLeg.getJSONObject("end_location");
             JSONObject jsonStartLocation = jsonLeg.getJSONObject("start_location");
+
+            ArrayList<LaLo> laloArray = new ArrayList<LaLo>();
+            JSONArray steps = jsonLeg.getJSONArray("steps");
+            for(int j = 0; j < steps.length(); j++){
+                JSONObject step = steps.getJSONObject(j);
+                double la = Float.parseFloat(step.getJSONObject("start_location").getString("lat"));
+                double lo = Float.parseFloat(step.getJSONObject("start_location").getString("lng"));
+                LaLo lalo = new LaLo(la,lo);
+                laloArray.add(lalo);
+                if(j == 1){
+                    laloArray.get(0).puntoSiguiente = laloArray.get(0).getId();
+                }
+            }
+
 
             route.distance = new Distance(jsonDistance.getString("text"), jsonDistance.getInt("value"));
             route.duration = new Duration(jsonDuration.getString("text"), jsonDuration.getInt("value"));

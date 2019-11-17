@@ -29,7 +29,10 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
@@ -143,8 +146,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Route route : routes) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
-            //((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
-            //((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
+            ((TextView) findViewById(R.id.time)).setText("Tiempo de llegada:" + route.duration.text);
+            ((TextView) findViewById(R.id.distancia)).setText("Distancia:" + route.distance.text);
 
             originMarkers.add(mMap.addMarker(new MarkerOptions()
                     .title(route.startAddress)
